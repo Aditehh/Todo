@@ -7,20 +7,21 @@ function App() {
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
 
-  const handleEdit = () => {
-
+  const handleEdit = (e, id) => {
+    let t = todos.filter(i=>i.id === id)
+      setTodo(t[0].todo)
+      let newTodos = todos.filter(item => {
+      return item.id !== id
+    });
+    setTodos(newTodos)
   }
 
   const handleDelete = (e, id) => {
-    let index = todos.findIndex(item => {
-      return item.id === id;
-    })
-    console.log(index)
+    
     let newTodos = todos.filter(item => {
       return item.id !== id
     });
     setTodos(newTodos)
-    console.log(newTodos, todos)
   }
 
   const handleAdd = () => {
@@ -64,7 +65,7 @@ function App() {
               <input name={item.id} onChange={handleCheckbox} type="checkbox" value={item.isCompleted} id="" />
               <div className={item.isCompleted ? "line-through" : ""}>{item.todo}</div>
               <div className="buttons my-2 ">
-                <button onClick={handleEdit} className='bg-gray-500 hover:bg-gray-700 cursor-pointer px-3 font-semibold mx-1 py-1.5 rounded-xl text-gray-300'>Edit</button>
+                <button onClick={(e)=>{handleEdit(e, item.id)}} className='bg-gray-500 hover:bg-gray-700 cursor-pointer px-3 font-semibold mx-1 py-1.5 rounded-xl text-gray-300'>Edit</button>
                 <button onClick={(e) => { handleDelete(e, item.id) }} className='bg-gray-500 hover:bg-gray-700 cursor-pointer px-3 font-semibold mx-1 py-1.5 rounded-xl text-gray-300'>Delete</button>
               </div>
             </div>
