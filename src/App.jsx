@@ -8,17 +8,19 @@ function App() {
   const [todos, setTodos] = useState([])
 
   const handleEdit = () => {
-    let index = todos.findIndex(item => {
-      return item.id === id;
-      console.log(index)
-      let newTodos =
-        newtodos[index].isCompleted = !newTodos[index].isCompleted;
-      setTodos(newTodos, todos)
-    })
+
   }
 
   const handleDelete = (e, id) => {
-    console.log(`the id is ${id}`)
+    let index = todos.findIndex(item => {
+      return item.id === id;
+    })
+    console.log(index)
+    let newTodos = todos.filter(item => {
+      return item.id !== id
+    });
+    setTodos(newTodos)
+    console.log(newTodos, todos)
   }
 
   const handleAdd = () => {
@@ -54,6 +56,7 @@ function App() {
 
         <h2 className='text-lg font-bold my-2'>Any todos?</h2>
         <div className="todos">
+          {todos.length === 0 && <div>No todos to display</div>}
           {todos.map(item => {
 
 
