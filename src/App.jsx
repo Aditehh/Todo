@@ -8,9 +8,9 @@ function App() {
   const [todos, setTodos] = useState([])
 
   const handleEdit = (e, id) => {
-    let t = todos.filter(i=>i.id === id)
-      setTodo(t[0].todo)
-      let newTodos = todos.filter(item => {
+   let t = todos.filter(i=> i.id === id)
+    setTodo(t[0].todo)
+        let newTodos = todos.filter(item => {
       return item.id !== id
     });
     setTodos(newTodos)
