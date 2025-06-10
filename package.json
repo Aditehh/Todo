@@ -12,6 +12,8 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.8",
     "react": "^19.1.0",
+    "react-confirm": "^0.3.0",
+    "react-confirm-alert": "^3.0.6",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.8",
     "uuid": "^11.1.0"

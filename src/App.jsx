@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
+   const [message, setMessage] = React.useState('');
 
   useEffect(() => {
     let todoString = localStorage.getItem("todos")
@@ -24,23 +25,30 @@ function App() {
       return item.id !== id
     });
     setTodos(newTodos)
-    savetoLS()
+    savetols()
   }
 
-  const handleDelete = (e, id) => {
+  const handleDelete = async (e, id) => {
 
     let newTodos = todos.filter(item => {
       return item.id !== id
     });
     setTodos(newTodos)
-    savetoLS()
+    savetols()
+
+    if (await confirm({ confirmation: "Are you sure?" }))
+      setMessage('yes');
+    else {
+      setMessage('no')
+    }
   }
+
 
   const handleAdd = () => {
     setTodos([...todos, { id: uuidv4(), todo, isCompleted: false }])
     setTodo(" ")
     console.log(todos)
-    savetoLS()
+    savetols()
   }
 
   const handleChange = (e) => {
@@ -55,10 +63,10 @@ function App() {
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos)
-    savetoLS()
+    savetols()
   }
 
-  const savetoLS = () => {
+  const savetols = (params) => {
     localStorage.setItem("todos", JSON.stringify(todos))
   }
 
