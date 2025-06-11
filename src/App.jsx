@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
-   const [message, setMessage] = React.useState('');
+   const [message, setMessage] = useState('');
 
   useEffect(() => {
     let todoString = localStorage.getItem("todos")
